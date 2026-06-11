@@ -9,6 +9,10 @@ public class TwoPointer {
         int[] num = {0,1,2,4,3,6};
         int target = 2;
         System.out.println(Arrays.toString(twoSum(num, target)));
+
+        int[] arr = {2,0,2,1,1,0};
+        sortColors(arr);
+        System.out.println(Arrays.toString(arr));
     }
 
     // 283. Move Zeroes
@@ -47,5 +51,27 @@ public class TwoPointer {
             }
         }
         return new int[] {};
+    }
+
+    // 75. Sort Colors
+    static void sortColors(int[] nums) {
+
+        // Sorting 0's
+        int left = 0;
+        for(int i=0; i<nums.length; i++){
+            if(nums[i] == 0){
+                swap(nums, i, left);
+                left++;
+            }
+        }
+
+        // Sorting 2's to last
+        int right = nums.length - 1;
+        for(int i=nums.length - 1; i>=0; i--){
+            if(nums[i] == 2){
+                swap(nums, i, right);
+                right--;
+            }
+        }
     }
 }
