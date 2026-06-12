@@ -9,6 +9,9 @@ public class TwoPointer {
 
         String s = "A man, a plan, a canal: Panama";
         System.out.println(isPalindrome(s));
+
+        String word = "abca";
+        System.out.println(validPalindrome(word));
     }
 
     // 344. Reverse String
@@ -49,6 +52,33 @@ public class TwoPointer {
             if (Character.toLowerCase(s.charAt(left)) != Character.toLowerCase(s.charAt(right))){
                 return false;
             }
+            left++;
+            right--;
+        }
+        return true;
+    }
+
+    // 680. Valid Palindrome II
+    static boolean validPalindrome(String s) {
+
+        int left = 0;
+        int right = s.length() - 1;
+        while (left < right){
+            if (s.charAt(left) != s.charAt(right)){
+                return palindrome(s, left + 1, right) || palindrome(s, left, right - 1);
+            }
+            left++;
+            right--;
+        }
+        return true;
+    }
+
+    static boolean palindrome(String s, int left, int right){
+        while (left < right){
+            if (s.charAt(left) != s.charAt(right)){
+                return false;
+            }
+
             left++;
             right--;
         }
