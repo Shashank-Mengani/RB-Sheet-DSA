@@ -18,6 +18,9 @@ public class TwoPointer {
 
         int[] elements = {-1,0,1,2,-1,-4};
         System.out.println(threeSum(elements));
+
+        int[] nbrs = {1,1,1,2,2,3};
+        System.out.println(removeDuplicates(nbrs));
     }
 
     // 283. Move Zeroes
@@ -116,5 +119,18 @@ public class TwoPointer {
         }
 
         return result;
+    }
+
+    // 80. Remove Duplicates from Sorted Array II
+    static int removeDuplicates(int[] num){
+
+        int i = 2;
+        for (int j = 2; j < num.length; j++) {
+            if (num[j] != num[i - 2]){
+                num[i] = num[j];
+                i++;
+            }
+        }
+        return i;
     }
 }
