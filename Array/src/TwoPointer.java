@@ -21,6 +21,9 @@ public class TwoPointer {
 
         int[] nbrs = {1,1,1,2,2,3};
         System.out.println(removeDuplicates(nbrs));
+
+        int[] height = {1,8,6,2,5,4,8,3,7};
+        System.out.println(maxArea(height));
     }
 
     // 283. Move Zeroes
@@ -132,5 +135,26 @@ public class TwoPointer {
             }
         }
         return i;
+    }
+
+    // 11. Container With Most Water
+    static int maxArea(int[] height) {
+
+        int maxArea = 0;
+        int left = 0;
+        int right = height.length - 1;
+        while (left < right){
+            int width = right - left;
+            int h = Math.min(height[left], height[right]);
+            int totalArea = width * h;
+            maxArea = Math.max(maxArea,totalArea);
+
+            if (height[left] < height[right]){
+                left++;
+            } else {
+                right--;
+            }
+        }
+        return maxArea;
     }
 }
