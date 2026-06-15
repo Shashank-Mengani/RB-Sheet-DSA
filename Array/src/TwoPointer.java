@@ -24,6 +24,10 @@ public class TwoPointer {
 
         int[] height = {1,8,6,2,5,4,8,3,7};
         System.out.println(maxArea(height));
+
+        int[] water = {0,1,0,2,1,0,1,3,2,1,2,1};
+        System.out.println(rainWater(water));
+
     }
 
     // 283. Move Zeroes
@@ -156,5 +160,41 @@ public class TwoPointer {
             }
         }
         return maxArea;
+    }
+
+    static int rainWater(int[] height){
+        int n = height.length;
+        int left = 0;
+        int right = n-1;
+        int totalWater = 0;
+        int leftMax = 0;
+        int rightMax = 0;
+
+//        for (int i = 0; i < n; i++) {
+//            int leftMax = 0;
+//            for (int l = 0; l <= i ; l++) {
+//                leftMax = Math.max(leftMax, height[l]);
+//            }
+//            int rightMax = 0;
+//            for (int r = i; r < n ; r++) {
+//                rightMax = Math.max(rightMax, height[r]);
+//            }
+//            int water = Math.min(leftMax, rightMax) - height[i];
+//            totalWater += water;
+//        }
+//        return totalWater;
+
+        while (left < right){
+            if (height[left] <= height[right]){
+                leftMax = Math.max(leftMax, height[left]);
+                totalWater += leftMax - height[left];
+                left++;
+            } else{
+                rightMax = Math.max(rightMax, height[right]);
+                totalWater += rightMax - height[right];
+                right--;
+            }
+        }
+        return totalWater;
     }
 }
